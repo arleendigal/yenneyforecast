@@ -1,9 +1,20 @@
 /* eslint-disable no-use-before-define */
-import React from 'react'
+import React, { useEffect } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
+import { getSuggestedPlaces } from '@api/weatherService'
 
 const FreeSolo: React.FC = () => {
+  const getPlaces = async () => {
+    const response = await getSuggestedPlaces('Sydney, Australia')
+    console.log('response: %o ', response)
+  }
+
+  // mount
+  useEffect(() => {
+    getPlaces()
+  }, [])
+
   return (
     <div style={{ width: '100%' }}>
       <Autocomplete
